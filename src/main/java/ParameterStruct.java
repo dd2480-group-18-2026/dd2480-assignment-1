@@ -7,7 +7,7 @@ public class ParameterStruct {
     public final double EPSILON;
     public final double AREA_1;
     public final double AREA_2;
-    public final double QUADS;
+    public final int QUADS;
     public final double DIST;
     public final int A_PTS;
     public final int B_PTS;
@@ -28,7 +28,7 @@ public class ParameterStruct {
         double epsilon, 
         double area1,
         double area2,
-        double quads, 
+        int quads, 
         double dist, 
         int aPts, 
         int bPts,
