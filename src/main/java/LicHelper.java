@@ -44,7 +44,7 @@ public class LicHelper {
         }
     }
 
-    static boolean calculateLIC4(ParameterStruct parameters, int numPoints, Point[] points) {
+    private static boolean calculateLIC4(ParameterStruct parameters, int numPoints, Point[] points) {
         int QUADS = parameters.QUADS;
         int Q_PTS = parameters.Q_PTS;
 
