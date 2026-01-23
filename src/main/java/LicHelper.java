@@ -28,7 +28,7 @@ public class LicHelper {
             case 8:
                 return false;
             case 9:
-                return false;
+                return calculateLIC9(parameters, numPoints, points);
             case 10:
                 return false;
             case 11:
@@ -94,6 +94,34 @@ public class LicHelper {
             }
 
             i++;
+        }
+
+        return false;
+    }
+
+    private static boolean calculateLIC9(ParameterStruct parameters, int numPoints, Point[] points) {
+        int C_PTS = parameters.C_PTS;
+        int D_PTS = parameters.D_PTS;
+        double epsilon = parameters.EPSILON;
+
+        if ((numPoints < 5) || C_PTS == 0 || D_PTS == 0 || C_PTS + D_PTS > numPoints - 3) {
+            return false;
+        }
+
+        for (int i = 0; i < numPoints - (C_PTS + D_PTS + 2); i++) {
+            Point A = points[i];
+            Point B = points[i + C_PTS + 1];
+            Point C = points[i + C_PTS + D_PTS + 2];
+
+            if ((A.equals(B)) || (C.equals(B))) {
+                continue;
+            }
+
+            double angle = B.angle(A, C);
+
+            if ((angle < Math.PI - epsilon) || (angle > Math.PI + epsilon)) {
+                return true;
+            }
         }
 
         return false;
