@@ -50,9 +50,8 @@ public class LicHelper {
         for (int i = 0; i < points.length - 1; i++) {
             Point pointA = points[i];
             Point pointB = points[i + 1];
-            double distance = Math.sqrt(Math.pow(pointA.x - pointB.x, 2) + Math.pow(pointA.y - pointB.y, 2));
 
-            if (distance > length1) {
+            if (pointA.distanceTo(pointB) > length1) {
                 return true;
             }
         }
