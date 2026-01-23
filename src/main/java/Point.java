@@ -31,5 +31,10 @@ public class Point {
 
 		double angle = BA_angle - BC_angle;
 		return Math.abs(angle);
-	}
+  }
+
+	public double distanceTo(Point otherPoint) {
+		return Math.sqrt(Math.pow(this.x - otherPoint.x, 2) + Math.pow(this.y - otherPoint.y, 2));
+  }
+	
 }

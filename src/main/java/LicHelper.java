@@ -10,7 +10,7 @@ public class LicHelper {
 
         switch (numOfLIC) {
             case 0:
-                return false;
+                return calculateLIC0(points, parameters);
             case 1:
                 return false;
             case 2:
@@ -42,6 +42,20 @@ public class LicHelper {
             default:
                 return false;
         }
+    }
+
+    private static boolean calculateLIC0(Point[] points, ParameterStruct parameters) {
+        double length1 = parameters.LENGTH_1;
+
+        for (int i = 0; i < points.length - 1; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + 1];
+
+            if (pointA.distanceTo(pointB) > length1) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean calculateLIC4(ParameterStruct parameters, int numPoints, Point[] points) {
