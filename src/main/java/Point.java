@@ -19,7 +19,7 @@ public class Point {
 	}
 
 	/**
-	 * This methods compute the absolute value of the ABC angle
+	 * This method computes the absolute value of the ABC angle
 	 * using the calling point as the vertex
 	 * @param A The first point of the triplet
 	 * @param C The last point of the triplet
