@@ -19,7 +19,7 @@ public class Lic4Tests {
 			0, 
 			0, 
 			0, 
-			3, // 3 quadrants required
+			2, // At least 3 quadrants required
 			0, 
 			0, 
 			0, 
@@ -69,7 +69,7 @@ public class Lic4Tests {
 			0, 
 			0, 
 			0, 
-			3, // Testing 3 quadrants required
+			2, // At least 3 quadrants required
 			0, 
 			0, 
 			0, 
@@ -118,7 +118,7 @@ public class Lic4Tests {
 			0, 
 			0, 
 			0, 
-			6, // Testing 6 quadrants required (obviously impossible)
+			5, // At least 6 quadrants required (obviously impossible)
 			0, 
 			0, 
 			0, 
@@ -168,7 +168,7 @@ public class Lic4Tests {
 			0, 
 			0, 
 			0, 
-			2, // Testing 2 quadrants required
+			1, // At least 2 quadrants required
 			0, 
 			0, 
 			0, 

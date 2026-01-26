@@ -122,7 +122,7 @@ public class LicHelper {
                 }
             }
 
-            if (count >= QUADS) { 
+            if (count > QUADS) { 
                 // If the LIC is verified we return
                 return true;
             } else { 
