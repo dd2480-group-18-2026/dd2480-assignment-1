@@ -11,27 +11,9 @@ public class Lic4Tests {
 	 */
     @Test
 	void calculateLIC4_returnsTrue_whenConsecutivePointsInEnoughQuads() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			2, // At least 3 quadrants required
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			4 // In 4 consecutive points
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		parameters.QUADS = 2;
+		parameters.Q_PTS = 4;
 
 		Point[] points = {
 			new Point(0, 0),    
@@ -61,27 +43,9 @@ public class Lic4Tests {
 	 */
 	@Test
 	void calculateLIC4_returnsFalse_whenNotEnoughConsecutivePointsInQuads() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			2, // At least 3 quadrants required
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			8 // In 8 consecutive points
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		parameters.QUADS = 2;
+		parameters.Q_PTS = 8;
 
 		Point[] points = {
 			new Point(0, 0), // Q1
@@ -110,27 +74,9 @@ public class Lic4Tests {
 	 */
     @Test
 	void calculateLIC4_invalidQUADS() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			5, // At least 6 quadrants required (obviously impossible)
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			8 // In 8 consecutive points
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		parameters.QUADS = 5;
+		parameters.Q_PTS = 8;
 
 		Point[] points = {
 			new Point(0, 0), // Q1
@@ -160,27 +106,9 @@ public class Lic4Tests {
 	 */
     @Test
 	void calculateLIC4_invalidQPTS() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, // At least 2 quadrants required
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			20 // In 20 consecutive points (there are only 10 points)
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		parameters.QUADS = 1;
+		parameters.Q_PTS = 20;
 
 		Point[] points = {
 			new Point(0, 0), // Q1

@@ -2,30 +2,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 public class Lic0Tests {
-    private final static ParameterStruct parameters = new ParameterStruct(
-			2, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0
-		);
-
+	private final static ParameterStruct parameters = new ParameterStruct();
+	@BeforeAll
+	static void init() {
+		parameters.LENGTH_1 = 2;
+	}
+	
     @Test
 	void calculateLIC0_returnsTrue_whenConsecutivePointsHaveDistanceGreaterThanLength1() {
 		Point[] points = {new Point(0, 1), new Point(1, 1), new Point(5, 6)};
