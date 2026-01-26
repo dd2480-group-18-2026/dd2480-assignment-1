@@ -26,7 +26,7 @@ public class LicHelper {
             case 7:
                 return false;
             case 8:
-                return false;
+                return calculateLIC8(parameters, numPoints, points);
             case 9:
                 return calculateLIC9(parameters, numPoints, points);
             case 10:
@@ -144,6 +144,38 @@ public class LicHelper {
                 return true;
             }
         }
+        return false;
+    }
+
+    public static boolean calculateLIC8(ParameterStruct parameters, int numPoints, Point[] points) {
+        int A_PTS = parameters.A_PTS;
+        int B_PTS = parameters.B_PTS;
+        double R = parameters.RADIUS_1;
+
+        if (numPoints < 5) {
+            return false;
+        }
+        if (A_PTS < 1) {
+            return false;
+        }
+        if (B_PTS < 1) {
+            return false;
+        }
+        if (A_PTS + B_PTS > numPoints - 3) {
+            return false;
+        }
+
+        for (int i = 0; i < numPoints - (A_PTS + B_PTS + 2); i++) {
+            Point A = points[i];
+            Point B = points[i + A_PTS + 1];
+            Point C = points[i + A_PTS + B_PTS + 2];
+
+            if (A.distanceTo(B) > 2 * R || B.distanceTo(C) > 2 * R || C.distanceTo(A) > 2 * R) {
+                return true;
+            }
+
+        }
+
         return false;
     }
   
