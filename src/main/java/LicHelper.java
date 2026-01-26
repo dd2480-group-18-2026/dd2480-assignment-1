@@ -16,11 +16,11 @@ public class LicHelper {
             case 2:
                 return false;
             case 3:
-                return false;
+                return calculateLIC3(points, parameters);
             case 4:
                 return calculateLIC4(parameters, numPoints, points);
             case 5:
-                return false;
+                return calculateLIC5(numPoints, points);
             case 6:
                 return false;
             case 7:
@@ -52,6 +52,29 @@ public class LicHelper {
             Point pointB = points[i + 1];
 
             if (pointA.distanceTo(pointB) > length1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean calculateLIC3(Point[] points, ParameterStruct parameters) { 
+        if (points.length < 3) {
+            return false;
+        }
+        
+        for (int i = 0; i < points.length - 2; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + 1];
+            Point pointC = points[i + 2];
+
+            double area = Math.abs(
+                (pointA.x * (pointB.y - pointC.y) +
+                 pointB.x * (pointC.y - pointA.y) +
+                 pointC.x * (pointA.y - pointB.y)) / 2.0
+            );
+
+            if (area > parameters.AREA_1) {
                 return true;
             }
         }
@@ -99,7 +122,7 @@ public class LicHelper {
                 }
             }
 
-            if (count >= QUADS) { 
+            if (count > QUADS) { 
                 // If the LIC is verified we return
                 return true;
             } else { 
@@ -113,6 +136,17 @@ public class LicHelper {
         return false;
     }
 
+    public static boolean calculateLIC5(int numPoints, Point[] points) {
+        for (int i = 0; i < numPoints - 1; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + 1];
+            if (pointB.x < pointA.x) {
+                return true;
+            }
+        }
+        return false;
+    }
+  
     private static boolean calculateLIC9(ParameterStruct parameters, int numPoints, Point[] points) {
         int C_PTS = parameters.C_PTS;
         int D_PTS = parameters.D_PTS;
@@ -137,7 +171,5 @@ public class LicHelper {
                 return true;
             }
         }
-
-        return false;
     }
 }
