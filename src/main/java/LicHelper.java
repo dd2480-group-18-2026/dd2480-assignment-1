@@ -20,7 +20,7 @@ public class LicHelper {
             case 4:
                 return calculateLIC4(parameters, numPoints, points);
             case 5:
-                return false;
+                return calculateLIC5(numPoints, points);
             case 6:
                 return false;
             case 7:
@@ -133,6 +133,17 @@ public class LicHelper {
             i++;
         }
 
+        return false;
+    }
+
+    public static boolean calculateLIC5(int numPoints, Point[] points) {
+        for (int i = 0; i < numPoints - 1; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + 1];
+            if (pointB.x < pointA.x) {
+                return true;
+            }
+        }
         return false;
     }
 }
