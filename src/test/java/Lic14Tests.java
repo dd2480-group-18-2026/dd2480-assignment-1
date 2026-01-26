@@ -10,16 +10,16 @@ public class Lic14Tests {
 			0, 
 			0, 
 			0, 
-			5, 
-			1, 
+			5, // AREA_1
+			1, // AREA_2
 			0,
 			0, 
 			0, 
 			0, 
 			0, 
 			0, 
-			1, 
-			1, 
+			1, // E_PTS
+			1, // F_PTS
 			0, 
 			0, 
 			0, 
@@ -102,7 +102,7 @@ public class Lic14Tests {
 
     /**
      * This test asserts that calculateLIC14 returns false
-     * when NUMPOINTS < 5, regardless of parameter values.
+     * when NUMPOINTS < 5.
      */
     @Test
     void calculateLIC14_returnsFalse_whenNumPointsLessThanFive() {
