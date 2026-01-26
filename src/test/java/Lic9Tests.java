@@ -4,11 +4,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class Lic9Tests {
+    private static ParameterStruct parameters = new ParameterStruct(
+        0,
+        0, 
+        0, 
+        0, 
+        1e-6, 
+        0, 
+        0, 
+        0,
+        0, 
+        0, 
+        0, 
+        1, 
+        1, 
+        0, 
+        0, 
+        0, 
+        0, 
+        0, 
+        8
+    );
+
     @Test
     void returnsFalse_whenNumPointsLessThanFive() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-
         Point[] points = {
             new Point(0, 0),
             new Point(1, 0),
@@ -21,12 +40,7 @@ public class Lic9Tests {
 
     @Test
     void returnsTrue_forAngleLessThanPiMinusEpsilon() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
-        // The angle Cetween these three points is 90°
+        // The angle between these three points is 90°
         Point[] points = {
             new Point(0, 1),   // A
             new Point(0, 0),
@@ -40,12 +54,7 @@ public class Lic9Tests {
 
     @Test
     void returnsTrue_forAngleMoreThanPiPlusEpsilon() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
-        // The angle Cetween these three points is 270°
+        // The angle between these three points is 270°, which should be changed to 90°
         Point[] points = {
             new Point(0, 0),   // A
             new Point(1, 0),
@@ -59,11 +68,6 @@ public class Lic9Tests {
 
     @Test
     void returnsFalse_forAngleExactlyPi() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
         Point[] points = {
             new Point(0, 0),   // A
             new Point(1, 0),
@@ -77,11 +81,6 @@ public class Lic9Tests {
 
     @Test
     void returnsFalse_forAngleWithinEpsilonOfPi() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
         Point[] points = {
             new Point(0, 0),        // A
             new Point(1, 0),
@@ -95,11 +94,6 @@ public class Lic9Tests {
 
     @Test
     void returnsFalse_whenFirstPointEqualsVertex() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
         Point[] points = {
             new Point(1, 1),   // A == vertex
             new Point(0, 0),
@@ -113,11 +107,6 @@ public class Lic9Tests {
 
     @Test
     void returnsFalse_whenLastPointEqualsVertex() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
         Point[] points = {
             new Point(0, 0),   // A
             new Point(1, 0),
@@ -130,11 +119,6 @@ public class Lic9Tests {
     }
 
     void returnsTrue_ifAnyTripletIsCorrect() {
-        ParameterStruct parameters = new ParameterStruct();
-        parameters.EPSILON = 1e-6;
-        parameters.C_PTS = 1;
-        parameters.D_PTS = 1;
-
         Point[] points = {
             new Point(0, 0),
             new Point(1, 0),   // A

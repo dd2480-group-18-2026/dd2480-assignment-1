@@ -37,7 +37,8 @@ public class PointTests {
      * is correct. 
      * Here, the angle between the X-axis and the BA vector is 180°, 
      * and the angle between the X-axis and the BC vector is -135°,
-     * for a total of 180 - (-135).
+     * for a total of 180 - (-135) = 315°. This should then be changed
+     * back to 360 - 315 = 45°.
      */
     @Test
     void pointAngle_returnsCorrectValueForAngleAbove180() {
@@ -45,6 +46,6 @@ public class PointTests {
         Point vertex = new Point(2, 0);
         Point C = new Point(1, -1);
 
-        assertEquals(180 + 135, vertex.angle(A, C) * 180 / Math.PI);
+        assertEquals(45, vertex.angle(A, C) * 180 / Math.PI);
     }
 }

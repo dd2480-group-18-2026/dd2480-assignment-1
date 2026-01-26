@@ -1,24 +1,24 @@
 
 public class ParameterStruct {
-    public double LENGTH_1;
-    public double LENGTH_2;
-    public double RADIUS_1;
-    public double RADIUS_2;
-    public double EPSILON;
-    public double AREA_1;
-    public double AREA_2;
-    public int QUADS;
-    public double DIST;
-    public int A_PTS;
-    public int B_PTS;
-    public int C_PTS;
-    public int D_PTS;
-    public int E_PTS;
-    public int F_PTS;
-    public int G_PTS;
-    public int K_PTS;
-    public int N_PTS;
-    public int Q_PTS;
+    public final double LENGTH_1;
+    public final double LENGTH_2;
+    public final double RADIUS_1;
+    public final double RADIUS_2;
+    public final double EPSILON;
+    public final double AREA_1;
+    public final double AREA_2;
+    public final int QUADS;
+    public final double DIST;
+    public final int A_PTS;
+    public final int B_PTS;
+    public final int C_PTS;
+    public final int D_PTS;
+    public final int E_PTS;
+    public final int F_PTS;
+    public final int G_PTS;
+    public final int K_PTS;
+    public final int N_PTS;
+    public final int Q_PTS;
 
     public ParameterStruct(
         double length1,
@@ -60,27 +60,5 @@ public class ParameterStruct {
         this.K_PTS = kPts;
         this.N_PTS = nPts;
         this.Q_PTS = qPts;
-    }
-
-    public ParameterStruct() {
-        this.LENGTH_1   = 0;
-        this.LENGTH_2   = 0;
-        this.RADIUS_1   = 0;
-        this.RADIUS_2   = 0;
-        this.EPSILON    = 0;
-        this.AREA_1     = 0;
-        this.AREA_2     = 0;
-        this.QUADS      = 0;
-        this.DIST       = 0;
-        this.A_PTS      = 0;
-        this.B_PTS      = 0;
-        this.C_PTS      = 0;
-        this.D_PTS      = 0;
-        this.E_PTS      = 0;
-        this.F_PTS      = 0;
-        this.G_PTS      = 0;
-        this.K_PTS      = 0;
-        this.N_PTS      = 0;
-        this.Q_PTS      = 0;
     }
 }
