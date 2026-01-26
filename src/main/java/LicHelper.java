@@ -20,7 +20,7 @@ public class LicHelper {
             case 4:
                 return calculateLIC4(parameters, numPoints, points);
             case 5:
-                return false;
+                return calculateLIC5(numPoints, points);
             case 6:
                 return false;
             case 7:
@@ -122,7 +122,7 @@ public class LicHelper {
                 }
             }
 
-            if (count >= QUADS) { 
+            if (count > QUADS) { 
                 // If the LIC is verified we return
                 return true;
             } else { 
@@ -136,6 +136,17 @@ public class LicHelper {
         return false;
     }
 
+    public static boolean calculateLIC5(int numPoints, Point[] points) {
+        for (int i = 0; i < numPoints - 1; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + 1];
+            if (pointB.x < pointA.x) {
+                return true;
+            }
+        }
+        return false;
+    }
+  
     private static boolean calculateLIC14(ParameterStruct parameters, int numPoints, Point[] points) {
         // We get the required parameters from the struct
         double area1 = parameters.AREA_1;
