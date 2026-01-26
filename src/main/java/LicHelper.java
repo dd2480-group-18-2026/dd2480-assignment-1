@@ -38,7 +38,7 @@ public class LicHelper {
             case 13:
                 return false;
             case 14:
-                return false;
+                return calculateLIC14(parameters, numPoints, points);
             default:
                 return false;
         }
@@ -190,5 +190,42 @@ public class LicHelper {
             }
         }
         return false;
+    }
+  
+    private static boolean calculateLIC14(ParameterStruct parameters, int numPoints, Point[] points) {
+        // We get the required parameters from the struct
+        double area1 = parameters.AREA_1;
+        double area2 = parameters.AREA_2;
+
+        if ((numPoints < 5) || area2 < 0) {
+            return false;
+        }
+
+        int ePts = parameters.E_PTS;
+        int fPts = parameters.F_PTS;
+
+        // Both of these conditions need to be true for the LIC to be true
+        boolean condition1 = false; // area > AREA_1
+        boolean condition2 = false; // area < AREA_2
+
+        for (int i = 0; i < numPoints - (ePts + fPts + 2); i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + ePts + 1];
+            Point pointC = points[i + ePts + fPts + 2];
+
+            double area = Math.abs(
+                (pointA.x * (pointB.y - pointC.y) +
+                 pointB.x * (pointC.y - pointA.y) +
+                 pointC.x * (pointA.y - pointB.y)) / 2.0
+            );
+
+            if (area > area1) condition1 = true;
+
+            if (area < area2) condition2 = true;
+
+            if (condition1 && condition2) return true;
+        }
+
+        return condition1 && condition2;
     }
 }
