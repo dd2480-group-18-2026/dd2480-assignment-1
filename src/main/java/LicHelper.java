@@ -30,7 +30,7 @@ public class LicHelper {
             case 9:
                 return calculateLIC9(parameters, numPoints, points);
             case 10:
-                return false;
+                return calculateLIC10(parameters, numPoints, points);
             case 11:
                 return false;
             case 12:
@@ -168,6 +168,24 @@ public class LicHelper {
             double angle = B.angle(A, C);
 
             if ((angle < Math.PI - epsilon) || (angle > Math.PI + epsilon)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean calculateLIC10(ParameterStruct parameters, int numPoints, Point[] points) {
+        int ePoints = parameters.E_PTS;
+        int fPoints = parameters.F_PTS;
+        double area1 = parameters.AREA_1;
+        
+        for (int i = 0; i < numPoints - ePoints - fPoints - 2; i++) {
+            Point pointA = points[i];
+            Point pointB = points[i + ePoints + 1];
+            Point pointC = points[i + ePoints + fPoints + 2];
+            
+            double triangleArea = 0.5 * Math.abs((pointB.x - pointA.x) * (pointC.y - pointA.y) - (pointC.x - pointA.x) * (pointB.y - pointA.y)); // Shoelace theorem
+            if (triangleArea > area1) {
                 return true;
             }
         }
