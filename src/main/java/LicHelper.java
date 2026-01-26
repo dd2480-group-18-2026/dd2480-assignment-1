@@ -14,7 +14,7 @@ public class LicHelper {
             case 1:
                 return false;
             case 2:
-                return calculateLIC2(parameters, numPoints, points);
+                return false;
             case 3:
                 return false;
             case 4:
@@ -57,31 +57,6 @@ public class LicHelper {
         }
         return false;
     }
-
-	private static boolean calculateLIC2(ParameterStruct parameters, int numPoints, Point[] points) {
-		double epsilon = parameters.EPSILON;
-		if (numPoints < 3) {
-			return false;
-		}
-
-		for (int i = 0; i < numPoints - 2; i++) {
-			Point A = points[i];
-			Point B = points[i + 1];
-			Point C = points[i + 2]; 
-
-			if ((A.equals(B)) || (C.equals(B))) {
-                continue;
-            }
-
-			double angle = B.angle(A, C);
-
-			if ((angle < Math.PI - epsilon) || (angle > Math.PI + epsilon)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 
     private static boolean calculateLIC4(ParameterStruct parameters, int numPoints, Point[] points) {
         int QUADS = parameters.QUADS;
