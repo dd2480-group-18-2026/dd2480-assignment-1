@@ -2,51 +2,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 public class Lic10Tests {
-    private final static ParameterStruct parametersArea1Is5 = new ParameterStruct(
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			5, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, 
-			2, 
-			0, 
-			0, 
-			0, 
-			0
-	);
+    private final static ParameterStruct parametersArea1Is5 = new ParameterStruct();
+	private final static ParameterStruct parametersArea1Is3 = new ParameterStruct();
 
-    private final static ParameterStruct parametersArea1Is3 = new ParameterStruct(
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			3, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, 
-			2, 
-			0, 
-			0, 
-			0, 
-			0
-	);
+	@BeforeAll
+	static void init() {
+		parametersArea1Is5.AREA_1 = 5;
+		parametersArea1Is5.E_PTS = 1;
+		parametersArea1Is5.F_PTS = 2;
+
+		parametersArea1Is3.AREA_1 = 3;
+		parametersArea1Is3.E_PTS = 1;
+		parametersArea1Is3.F_PTS = 2;
+	}
+
 	/*
 	 * Test that calculateLIC10 returns true when the following are true:
 	 * 

@@ -1,30 +1,18 @@
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class Lic14Tests {
-    private static ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			5, // AREA_1
-			1, // AREA_2
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, // E_PTS
-			1, // F_PTS
-			0, 
-			0, 
-			0, 
-			0
-		);
+    private static ParameterStruct parameters = new ParameterStruct();
+	@BeforeAll
+	static void init() {
+		parameters.AREA_1 = 5;
+		parameters.AREA_2 = 1;
+		parameters.E_PTS = 1;
+		parameters.F_PTS = 1;
+	}
 
     /**
      * This test asserts that calculateLIC14 returns true when

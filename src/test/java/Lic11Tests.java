@@ -12,27 +12,9 @@ public class Lic11Tests {
 	 */
 	@Test
 	void calculateLIC11_returnsFalse_whenNumPointsIsLessThan3() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, //Only one "consecutive" intervening point
-			0, 
-			0, 
-			0 
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		//Only one "consecutive" intervening point
+		parameters.G_PTS = 1;
 
 		Point[] points = {
             new Point(2,0),
@@ -55,27 +37,9 @@ public class Lic11Tests {
 	 */
     @Test
 	void calculateLIC11_returnsTrue_whenLIC11ConditionIsMet() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, //Only one "consecutive" intervening point
-			0, 
-			0, 
-			0 
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		//Only one "consecutive" intervening point
+		parameters.G_PTS = 1;
 
 		Point[] points = {
             new Point(2,0),
@@ -99,27 +63,9 @@ public class Lic11Tests {
 	 */
     @Test
 	void calculateLIC11_returnsFalse_whenLIC11ConditionIsNotMet() {
-		ParameterStruct parameters = new ParameterStruct(
-			0,
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			1, //Only one "consecutive" intervening point
-			0, 
-			0, 
-			0 
-		);
+		ParameterStruct parameters = new ParameterStruct();
+		//Only one "consecutive" intervening point
+		parameters.G_PTS = 1;
 
 		Point[] points = {
             new Point(2,0),

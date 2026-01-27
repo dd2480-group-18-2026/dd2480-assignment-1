@@ -4,27 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class Lic5Tests {
-	private final static ParameterStruct parameters = new ParameterStruct(
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0
-	);
+	private final static ParameterStruct parameters = new ParameterStruct();
 
 	@Test
 	void calculateLIC5_returnsTrue_whenNextPointXGreaterThanCurrentPointX() {
