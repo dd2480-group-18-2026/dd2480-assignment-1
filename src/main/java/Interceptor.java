@@ -1,5 +1,5 @@
 public class Interceptor {
-   public static String decide(int numPoints, Point[] points, ParameterStruct parameters, Connectors[][] lcm, boolean[] puv) {
+   public static boolean decide(int numPoints, Point[] points, ParameterStruct parameters, Connectors[][] lcm, boolean[] puv) {
       boolean[] cmv = new boolean[15];
       boolean[][] pum = new boolean[15][15];
       boolean[] fuv = new boolean[15];
@@ -24,11 +24,11 @@ public class Interceptor {
       // Get launch decision (all FUV elements are true)
       for (boolean licMet : fuv) {
          if (!licMet) {
-            return "NO";
+            return false;
          }
       }
 
-      return "YES";
+      return true;
    }
 
    private static void populateCmv(boolean[] cmv, ParameterStruct parameters, int numPoints, Point[] points) {

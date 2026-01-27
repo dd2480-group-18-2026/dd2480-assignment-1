@@ -1,4 +1,5 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -78,9 +79,9 @@ public class InterceptorTest {
             new Point(10, 17),
         };
 
-        String result = Interceptor.decide(points.length, points, PARAMETERS, LCM, PUV);
+        boolean result = Interceptor.decide(points.length, points, PARAMETERS, LCM, PUV);
 
-        assertEquals("YES", result);
+        assertTrue(result);
 	}
 
     @Test
@@ -89,9 +90,9 @@ public class InterceptorTest {
             new Point(-2, 3),
         };
 
-        String result = Interceptor.decide(points.length, points, PARAMETERS, LCM_ALL_NOTUSED, PUV);
+        boolean result = Interceptor.decide(points.length, points, PARAMETERS, LCM_ALL_NOTUSED, PUV);
 
-        assertEquals("YES", result);
+        assertTrue(result);
 	}
 
     @Test
@@ -100,8 +101,8 @@ public class InterceptorTest {
             new Point(-2, 3),
         };
 
-        String result = Interceptor.decide(points.length, points, PARAMETERS, LCM, PUV);
+        boolean result = Interceptor.decide(points.length, points, PARAMETERS, LCM, PUV);
 
-        assertEquals("NO", result);
+        assertFalse(result);
 	}
 }
