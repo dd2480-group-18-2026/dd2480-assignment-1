@@ -12,7 +12,7 @@ public class LicHelper {
             case 0:
                 return calculateLIC0(points, parameters);
             case 1:
-                return false;
+                return calculateLIC1(points, numPoints, parameters);
             case 2:
                 return false;
             case 3:
@@ -57,6 +57,19 @@ public class LicHelper {
         }
         return false;
     }
+
+    private static boolean calculateLIC1(Point[] points, int numPoints, ParameterStruct parameters) {
+        double RADIUS1 = parameters.RADIUS_1;
+
+        for (int i = 0; i < numPoints - 2; i++) {
+            Point a = points[i];
+            Point b = points[i+1];
+            Point c = points[i+2];
+            if (!LicUtils.pointsInCircle(a, b, c, RADIUS1)) return true;
+        }        
+        return false;
+    }
+
 
     private static boolean calculateLIC3(Point[] points, ParameterStruct parameters) { 
         if (points.length < 3) {
