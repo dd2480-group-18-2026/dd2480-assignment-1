@@ -111,4 +111,17 @@ public class Lic8Tests {
         };
         assertFalse(LicHelper.calculateLIC(params(2.0, 1, 1), points.length, points, 8));
     }
+
+    @Test
+    void distanceWithinDiameterButStillFails() {
+        Point[] points = {
+            new Point(0, 0),
+            new Point(0, 0),
+            new Point(4, 0),
+            new Point(0, 0),
+            new Point(8, 0)
+        };
+
+        assertTrue(LicHelper.calculateLIC(params(3.0, 1, 1), points.length, points, 8));
+    }
 }

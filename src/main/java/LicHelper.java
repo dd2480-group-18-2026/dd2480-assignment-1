@@ -171,7 +171,32 @@ public class LicHelper {
             Point B = points[i + A_PTS + 1];
             Point C = points[i + A_PTS + B_PTS + 2];
 
-            if (A.distanceTo(B) > 2 * R || B.distanceTo(C) > 2 * R || C.distanceTo(A) > 2 * R) {
+            double ab = A.distanceTo(B);
+            double bc = B.distanceTo(C); 
+            double ca = C.distanceTo(A);
+
+            double longest = Math.max(ab, Math.max(bc, ca));
+            if (longest > 2 * R) {
+                return true;
+            }
+
+            double area = Math.abs(
+                (A.x * (B.y - C.y) +
+                 B.x * (C.y - A.y) +
+                 C.x * (A.y - B.y)) / 2.0
+            );
+
+            double requiredArea;
+            if (area == 0.0) {
+                requiredArea = longest / 2.0;
+            } 
+            else {
+                double rCircumradius = (ab * bc * ca) / (4.0 * area);
+                double rLongestSide = longest / 2.0;
+                requiredArea = Math.max(rLongestSide, rCircumradius);
+            }
+
+            if (requiredArea > R) {
                 return true;
             }
 
