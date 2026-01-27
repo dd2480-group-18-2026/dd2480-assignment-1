@@ -30,7 +30,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void tooFewNumPoints() {
+    void calculateLIC8_returnsFalse_ToFewPoints() {
         Point[] points = {
             new Point(0, 0),
             new Point(1, 0),
@@ -41,7 +41,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void tooFewAPts() {
+    void calculateLIC8_returnsFalse_tooFewAPts() {
         Point[] points = {
             new Point(0, 0),
             new Point(0, 0),
@@ -53,7 +53,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void tooFewBPts() {
+    void calculateLIC8_returnsFalse_tooFewBPts() {
         Point[] points = {
             new Point(0, 0),
             new Point(0, 0),
@@ -65,7 +65,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void spacingTooLarge() {
+    void calculateLIC8_returnsFalse_spacingTooLarge() {
         Point[] points = {
             new Point(0, 0),
             new Point(1, 0),
@@ -77,7 +77,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void distanceGreaterThanDiameter() {
+    void calculateLIC8_returnsTrue_distanceGreaterThanDiameter() {
         Point[] points = {
             new Point(0, 0),
             new Point(0, 0),
@@ -89,7 +89,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void distanceWithinDiameter() {
+    void calculateLIC8_returnsFalse_distanceWithinDiameter() {
         Point[] points = {
             new Point(0, 0),
             new Point(1, 1),
@@ -101,7 +101,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void distanceEqualsDiameter() {
+    void calculateLIC8_returnsFalse_distanceEqualsDiameter() {
         Point[] points = {
             new Point(0, 0),
             new Point(0, 0),
@@ -113,7 +113,7 @@ public class Lic8Tests {
     }
 
     @Test
-    void distanceWithinDiameterButStillFails() {
+    void calculateLIC8_returnsTrue_distanceWithinDiameterButStillFails() {
         Point[] points = {
             new Point(0, 0),
             new Point(0, 0),
