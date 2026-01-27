@@ -1,5 +1,13 @@
 public class Interceptor {
    public static boolean decide(int numPoints, Point[] points, ParameterStruct parameters, Connectors[][] lcm, boolean[] puv) {
+      if (!(lcm.length == 15 && lcm[0].length == 15)) {
+         throw new IllegalArgumentException("The LCM has the wrong dimensions.");
+      }
+
+      if (puv.length != 15) {
+         throw new IllegalArgumentException("The PUV has the wrong dimensions.");
+      }
+
       boolean[] cmv = new boolean[15];
       boolean[][] pum = new boolean[15][15];
       boolean[] fuv = new boolean[15];
@@ -7,7 +15,7 @@ public class Interceptor {
       populateCmv(cmv, parameters, numPoints, points);
       populatePum(pum, cmv, lcm);
       populateFuv(fuv, pum, puv);
-      
+
       // Get launch decision
       for (boolean licMet : fuv) {
          if (!licMet) {

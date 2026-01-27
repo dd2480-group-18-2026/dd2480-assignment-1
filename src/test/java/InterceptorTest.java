@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -96,6 +97,26 @@ public class InterceptorTest {
 	}
 
     @Test
+	void decide_returnsFalse_whenLic4IsNotMet() {
+		Point[] points = {
+            new Point(-2, 3),
+            new Point(0, 0),
+            new Point(1, 1),
+            new Point(1, 2),
+            new Point(3, 3),
+            new Point(3, 4),
+            new Point(5, 4),
+            new Point(11, 10),
+            new Point(13, 12),
+            new Point(10, 17),
+        };
+
+        boolean result = Interceptor.decide(points.length, points, PARAMETERS, LCM, PUV);
+
+        assertFalse(result);
+	}
+
+    @Test
 	void decide_returnsFalse_whenOnlyOnePointAndLcmIsNotAllNotUsed() {
 		Point[] points = {
             new Point(-2, 3),
@@ -105,4 +126,28 @@ public class InterceptorTest {
 
         assertFalse(result);
 	}
+
+    @Test
+    void decide_throwsIllegalArgumentException_whenLcmHasWrongDimensions() {
+        Point[] points = {
+            new Point(-2, 3),
+        };
+        Connectors[][] badLcm = new Connectors[16][16];
+
+        assertThrows(IllegalArgumentException.class, () -> {
+			Interceptor.decide(points.length, points, PARAMETERS, badLcm, PUV);
+		});
+    }
+
+    @Test
+    void decide_throwsIllegalArgumentException_whenPuvHasWrongDimensions() {
+        Point[] points = {
+            new Point(-2, 3),
+        };
+        boolean[] badPuv = new boolean[16];
+
+        assertThrows(IllegalArgumentException.class, () -> {
+			Interceptor.decide(points.length, points, PARAMETERS, LCM, badPuv);
+		});
+    }
 }
