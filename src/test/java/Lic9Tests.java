@@ -2,29 +2,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 public class Lic9Tests {
-    private static ParameterStruct parameters = new ParameterStruct(
-        0,
-        0, 
-        0, 
-        0, 
-        1e-6, 
-        0, 
-        0, 
-        0,
-        0, 
-        0, 
-        0, 
-        1, 
-        1, 
-        0, 
-        0, 
-        0, 
-        0, 
-        0, 
-        8
-    );
+    private static ParameterStruct parameters = new ParameterStruct();
+
+	@BeforeAll
+	static void init() {
+		parameters.EPSILON = 1e-6;
+		parameters.C_PTS = 1;
+		parameters.D_PTS = 1; 
+		parameters.Q_PTS = 8;
+	}
 
     @Test
     void returnsFalse_whenNumPointsLessThanFive() {
