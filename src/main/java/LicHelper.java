@@ -32,7 +32,7 @@ public class LicHelper {
             case 10:
                 return calculateLIC10(parameters, numPoints, points);
             case 11:
-                return false;
+                return calculateLIC11(parameters, numPoints, points);
             case 12:
                 return false;
             case 13:
@@ -136,6 +136,7 @@ public class LicHelper {
         return false;
     }
 
+
     public static boolean calculateLIC5(int numPoints, Point[] points) {
         for (int i = 0; i < numPoints - 1; i++) {
             Point pointA = points[i];
@@ -188,6 +189,21 @@ public class LicHelper {
             if (triangleArea > area1) {
                 return true;
             }
+        }
+        return false;
+    }
+  
+    private static boolean calculateLIC11(ParameterStruct parameters, int numPoints, Point[] points) {
+        if (numPoints < 3)
+            return false;
+
+        int G_PTS = parameters.G_PTS;
+
+        for (int i = 0; i <= numPoints - G_PTS - 2; i++) {
+            
+            int j = i + G_PTS + 1;
+            
+            if (points[j].x - points[i].x < 0) return true;
         }
         return false;
     }
