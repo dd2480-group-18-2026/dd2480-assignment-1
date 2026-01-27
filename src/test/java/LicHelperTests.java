@@ -11,7 +11,7 @@ public class LicHelperTests {
 		});
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			ParameterStruct parameters = new ParameterStruct(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			ParameterStruct parameters = new ParameterStruct();
 			LicHelper.calculateLIC(parameters, 0, null, 0);
 		});
 	}
