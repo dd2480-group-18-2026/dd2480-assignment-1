@@ -5,23 +5,10 @@ public class Interceptor {
       boolean[] fuv = new boolean[15];
 
       populateCmv(cmv, parameters, numPoints, points);
-      
-      
-      for (int i = 0; i < cmv.length; i++) {
-         System.out.println("CMV[" + i + "]: " + cmv[i]);
-      }
-
       populatePum(pum, cmv, lcm);
-
       populateFuv(fuv, pum, puv);
       
-
-      System.out.println("");
-      for (int i = 0; i < fuv.length; i++) {
-         System.out.println("FUV[" + i + "]: " + fuv[i]);
-      }
-
-      // Get launch decision (all FUV elements are true)
+      // Get launch decision
       for (boolean licMet : fuv) {
          if (!licMet) {
             return false;
