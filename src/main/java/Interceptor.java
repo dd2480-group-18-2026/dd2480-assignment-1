@@ -47,15 +47,7 @@ public class Interceptor {
          }));
       }
 
-      for (Future<Void> future : futures) {
-         try {
-            future.get();
-         } catch (InterruptedException e) {
-               System.err.println("Thread interrupted: " + e);
-         } catch (ExecutionException e) {
-               System.err.println("Computation threw exception: " + e.getCause());
-         }
-      }
+      awaitFutures(futures);
    }
 
    private static void populatePum(boolean[][] pum, boolean[] cmv, Connectors[][] lcm) {
@@ -81,15 +73,7 @@ public class Interceptor {
          }));
       }
 
-      for (Future<Void> future : futures) {
-         try {
-            future.get();
-         } catch (InterruptedException e) {
-               System.err.println("Thread interrupted: " + e);
-         } catch (ExecutionException e) {
-               System.err.println("Computation threw exception: " + e.getCause());
-         }
-      }
+      awaitFutures(futures);
    }
 
    private static void populateFuv(boolean[] fuv, boolean[][] pum, boolean[] puv) {
@@ -112,6 +96,10 @@ public class Interceptor {
          }));        
       }
 
+      awaitFutures(futures);
+   }
+
+   private static void awaitFutures(List<Future<Void>> futures) {
       for (Future<Void> future : futures) {
          try {
             future.get();
