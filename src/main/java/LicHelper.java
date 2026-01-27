@@ -26,7 +26,7 @@ public class LicHelper {
             case 7:
                 return false;
             case 8:
-                return false;
+                return calculateLIC8(parameters, numPoints, points);
             case 9:
                 return calculateLIC9(parameters, numPoints, points);
             case 10:
@@ -145,6 +145,63 @@ public class LicHelper {
                 return true;
             }
         }
+        return false;
+    }
+
+    public static boolean calculateLIC8(ParameterStruct parameters, int numPoints, Point[] points) {
+        int A_PTS = parameters.A_PTS;
+        int B_PTS = parameters.B_PTS;
+        double R = parameters.RADIUS_1;
+
+        if (numPoints < 5) {
+            return false;
+        }
+        if (A_PTS < 1) {
+            return false;
+        }
+        if (B_PTS < 1) {
+            return false;
+        }
+        if (A_PTS + B_PTS > numPoints - 3) {
+            return false;
+        }
+
+        for (int i = 0; i < numPoints - (A_PTS + B_PTS + 2); i++) {
+            Point A = points[i];
+            Point B = points[i + A_PTS + 1];
+            Point C = points[i + A_PTS + B_PTS + 2];
+
+            double ab = A.distanceTo(B);
+            double bc = B.distanceTo(C); 
+            double ca = C.distanceTo(A);
+
+            double longest = Math.max(ab, Math.max(bc, ca));
+            if (longest > 2 * R) {
+                return true;
+            }
+
+            double area = Math.abs(
+                (A.x * (B.y - C.y) +
+                 B.x * (C.y - A.y) +
+                 C.x * (A.y - B.y)) / 2.0
+            );
+
+            double requiredArea;
+            if (area == 0.0) {
+                requiredArea = longest / 2.0;
+            } 
+            else {
+                double rCircumradius = (ab * bc * ca) / (4.0 * area);
+                double rLongestSide = longest / 2.0;
+                requiredArea = Math.max(rLongestSide, rCircumradius);
+            }
+
+            if (requiredArea > R) {
+                return true;
+            }
+
+        }
+
         return false;
     }
   
