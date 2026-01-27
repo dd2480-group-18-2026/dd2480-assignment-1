@@ -36,7 +36,7 @@ public class LicHelper {
             case 12:
                 return false;
             case 13:
-                return false;
+                return calculateLIC13(parameters, numPoints, points);
             case 14:
                 return calculateLIC14(parameters, numPoints, points);
             default:
@@ -265,6 +265,69 @@ public class LicHelper {
         return false;
     }
   
+    private static boolean calculateLIC13(ParameterStruct parameters, int numPoints, Point[] points) {
+        int A_PTS = parameters.A_PTS;
+        int B_PTS = parameters.B_PTS;
+        double r1 = parameters.RADIUS_1;
+        double r2 = parameters.RADIUS_2;
+
+        if (numPoints < 5) {
+            return false;
+        }
+        if (A_PTS < 1) {
+            return false;
+        }
+        if (B_PTS < 1) {
+            return false;
+        }
+        if (A_PTS + B_PTS > numPoints - 3) {
+            return false;
+        }
+
+        boolean outsideCircle1 = false;
+        boolean insideCircle2 = false;
+
+        for (int i = 0; i < numPoints - (A_PTS + B_PTS + 2); i++) {
+            Point A = points[i];
+            Point B = points[i + A_PTS + 1];
+            Point C = points[i + A_PTS + B_PTS + 2];
+
+            double ab = A.distanceTo(B);
+            double bc = B.distanceTo(C); 
+            double ca = C.distanceTo(A);
+
+            double longest = Math.max(ab, Math.max(bc, ca));
+
+            double area = Math.abs(
+                (A.x * (B.y - C.y) +
+                 B.x * (C.y - A.y) +
+                 C.x * (A.y - B.y)) / 2.0
+            );
+
+            double requiredArea;
+            if (area == 0.0) {
+                requiredArea = longest / 2.0;
+            } 
+            else {
+                double rCircumradius = (ab * bc * ca) / (4.0 * area);
+                double rLongestSide = longest / 2.0;
+                requiredArea = Math.max(rLongestSide, rCircumradius);
+            }
+
+            if (requiredArea > r1) {
+                outsideCircle1 = true;
+            }
+            if (requiredArea <= r2) {
+                insideCircle2 = true;
+            }
+            if (outsideCircle1 && insideCircle2) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static boolean calculateLIC14(ParameterStruct parameters, int numPoints, Point[] points) {
         // We get the required parameters from the struct
         double area1 = parameters.AREA_1;
