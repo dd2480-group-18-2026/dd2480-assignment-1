@@ -65,6 +65,10 @@ public class InterceptorTest {
 
     static final boolean[] PUV = {true, false, false, true, true, true, false, false, false, true, true, true, true, false, true};
 
+    /*
+     * This tests that decide returns true when LICs 0, 3, 4, 5, 9, 10, 11 and 14
+     * all evaluate to true and the rest are not considered given the LCM and PUV.
+     */
     @Test
 	void decide_returnsTrue_whenCorrectConditions() {
 		Point[] points = {
@@ -85,6 +89,11 @@ public class InterceptorTest {
         assertTrue(result);
 	}
 
+    /*
+     * This tests that even when LICs evaluate to false, decide returns true
+     * when the LCM renders them irrelevant through NOTUSED being set across
+     * the whole row.
+     */
     @Test
 	void decide_returnsTrue_whenWholeLcmIsNotUsed() {
 		Point[] points = {
@@ -96,6 +105,10 @@ public class InterceptorTest {
         assertTrue(result);
 	}
 
+    /*
+     * This tests that decide returns false when LIC 4 evaluates to false
+     * and it should be considered according to both the LCM and PUV.
+     */
     @Test
 	void decide_returnsFalse_whenLic4IsNotMet() {
 		Point[] points = {
@@ -116,6 +129,11 @@ public class InterceptorTest {
         assertFalse(result);
 	}
 
+    /*
+     * This tests that decide returns false when the same inputs are given
+     * as in the test decide_returnsTrue_whenWholeLcmIsNotUsed except for 
+     * another LCM.
+     */
     @Test
 	void decide_returnsFalse_whenOnlyOnePointAndLcmIsNotAllNotUsed() {
 		Point[] points = {
@@ -127,6 +145,10 @@ public class InterceptorTest {
         assertFalse(result);
 	}
 
+    /*
+     * This tests that an IllegalArgumentExcetion is thrown when the dimensions
+     * of the LCM are 16 by 16 (i.e. not 15 by 15, which it should be).
+     */
     @Test
     void decide_throwsIllegalArgumentException_whenLcmHasWrongDimensions() {
         Point[] points = {
@@ -139,6 +161,10 @@ public class InterceptorTest {
 		});
     }
 
+    /*
+     * This tests that an IllegalArgumentExcetion is thrown when the length
+     * of the PUV is 16 (i.e. not 15, which it should be).
+     */
     @Test
     void decide_throwsIllegalArgumentException_whenPuvHasWrongDimensions() {
         Point[] points = {
