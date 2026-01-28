@@ -304,20 +304,20 @@ public class LicHelper {
                  C.x * (A.y - B.y)) / 2.0
             );
 
-            double requiredArea;
+            double requiredRadius;
             if (area == 0.0) {
-                requiredArea = longest / 2.0;
+                requiredRadius = longest / 2.0;
             } 
             else {
                 double rCircumradius = (ab * bc * ca) / (4.0 * area);
                 double rLongestSide = longest / 2.0;
-                requiredArea = Math.max(rLongestSide, rCircumradius);
+                requiredRadius = Math.max(rLongestSide, rCircumradius);
             }
 
-            if (requiredArea > r1) {
+            if (requiredRadius > r1) {
                 outsideCircle1 = true;
             }
-            if (requiredArea <= r2) {
+            if (requiredRadius <= r2) {
                 insideCircle2 = true;
             }
             if (outsideCircle1 && insideCircle2) {
