@@ -34,7 +34,7 @@ public class LicHelper {
             case 11:
                 return calculateLIC11(parameters, numPoints, points);
             case 12:
-                return false;
+                return calculateLIC12(parameters, numPoints, points);
             case 13:
                 return false;
             case 14:
@@ -306,6 +306,34 @@ public class LicHelper {
         }
         return false;
     }
+
+	private static boolean calculateLIC12(ParameterStruct parameters, int numPoints, Point[] points) {
+		int kPts = parameters.K_PTS;
+		double length1 = parameters.LENGTH_1;
+		double length2 = parameters.LENGTH_2;
+
+		if (numPoints < 3 || kPts < 1 || kPts > (numPoints - 2) ||length1 < 0 || length2 < 0) {
+			return false;
+		}
+
+		boolean greaterThanLength1 = false;
+		boolean lessThanLength2 = false;
+
+		for (int i = 0; i < numPoints - (kPts + 1); i++) {
+			if (points[i].distanceTo(points[i + kPts + 1]) > length1) {
+				greaterThanLength1 = true;
+			}
+			if (points[i].distanceTo(points[i + kPts + 1]) < length2) {
+				lessThanLength2 = true;
+			}
+
+			if (greaterThanLength1 && lessThanLength2) {
+				return true;
+			}
+		}
+
+		return false;
+	}
   
     private static boolean calculateLIC14(ParameterStruct parameters, int numPoints, Point[] points) {
         // We get the required parameters from the struct
