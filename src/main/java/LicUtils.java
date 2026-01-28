@@ -7,18 +7,6 @@ public final class LicUtils {
     }
 
     //Helper methods:
-
-    static boolean pointsInCircle(Point a, Point b, Point c, double r) {
-        double maxDist =
-            Math.max(
-                pointDistance(a, b),
-                Math.max(
-                    pointDistance(a, c),
-                    pointDistance(b, c)
-                )
-        );
-        return maxDist <= r * 2;
-    }
     
     static double pointDistance(Point a, Point b) {
         double dx = a.x - b.x;
