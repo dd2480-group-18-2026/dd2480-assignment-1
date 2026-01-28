@@ -7,7 +7,6 @@ public final class LicUtils {
     }
 
     //Helper methods:
-
     static double distToLine(Point a, Point b, Point p) {
         // Based on the wikipedia page: https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
         double abx = b.x - a.x;
@@ -26,5 +25,4 @@ public final class LicUtils {
         double dy = a.y - b.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
-
 }
