@@ -51,7 +51,7 @@ public class LicHelper {
             Point pointA = points[i];
             Point pointB = points[i + 1];
 
-            if (pointA.distanceTo(pointB) > length1) {
+            if (LicUtils.pointDistance(pointA, pointB) > length1) {
                 return true;
             }
         }
@@ -79,21 +79,9 @@ public class LicHelper {
                 return true;
             }
 
-            double area = Math.abs(
-                (A.x * (B.y - C.y) +
-                 B.x * (C.y - A.y) +
-                 C.x * (A.y - B.y)) / 2.0
-            );
+            double area = LicUtils.calculateTriangleArea(A, B, C);
 
-            double requiredRadius;
-            if (area == 0.0) {
-                requiredRadius = longest / 2.0;
-            } 
-            else {
-                double rCircumradius = (ab * bc * ca) / (4.0 * area);
-                double rLongestSide = longest / 2.0;
-                requiredRadius = Math.max(rLongestSide, rCircumradius);
-            }
+            double requiredRadius = LicUtils.calculateRequiredRadius(area, longest, ab, bc, ca);
 
             if (requiredRadius > R) {
                 return true;
@@ -118,7 +106,7 @@ public class LicHelper {
                 continue;
             }
 
-			double angle = B.angle(A, C);
+			double angle = LicUtils.angle(A, B, C);
 
 			if ((angle < Math.PI - epsilon) || (angle > Math.PI + epsilon)) {
 				return true;
@@ -138,11 +126,7 @@ public class LicHelper {
             Point pointB = points[i + 1];
             Point pointC = points[i + 2];
 
-            double area = Math.abs(
-                (pointA.x * (pointB.y - pointC.y) +
-                 pointB.x * (pointC.y - pointA.y) +
-                 pointC.x * (pointA.y - pointB.y)) / 2.0
-            );
+            double area = LicUtils.calculateTriangleArea(pointA, pointB, pointC);
 
             if (area > parameters.AREA_1) {
                 return true;
@@ -256,7 +240,7 @@ public class LicHelper {
 		}
 
 		for (int i = 0; i < numPoints - (kPts + 1); i++) {
-			if (points[i].distanceTo(points[i + kPts + 1]) > length) {
+			if (LicUtils.pointDistance(points[i], points[i + kPts + 1]) > length) {
 				return true;
 			}
 		}
@@ -287,32 +271,20 @@ public class LicHelper {
             Point B = points[i + A_PTS + 1];
             Point C = points[i + A_PTS + B_PTS + 2];
 
-            double ab = A.distanceTo(B);
-            double bc = B.distanceTo(C); 
-            double ca = C.distanceTo(A);
+            double ab = LicUtils.pointDistance(A, B);
+            double bc = LicUtils.pointDistance(B, C); 
+            double ca = LicUtils.pointDistance(C, A);
 
             double longest = Math.max(ab, Math.max(bc, ca));
             if (longest > 2 * R) {
                 return true;
             }
 
-            double area = Math.abs(
-                (A.x * (B.y - C.y) +
-                 B.x * (C.y - A.y) +
-                 C.x * (A.y - B.y)) / 2.0
-            );
+            double area = LicUtils.calculateTriangleArea(A, B, C);
 
-            double requiredArea;
-            if (area == 0.0) {
-                requiredArea = longest / 2.0;
-            } 
-            else {
-                double rCircumradius = (ab * bc * ca) / (4.0 * area);
-                double rLongestSide = longest / 2.0;
-                requiredArea = Math.max(rLongestSide, rCircumradius);
-            }
+            double requiredRadius = LicUtils.calculateRequiredRadius(area, longest, ab, bc, ca);
 
-            if (requiredArea > R) {
+            if (requiredRadius > R) {
                 return true;
             }
 
@@ -339,7 +311,7 @@ public class LicHelper {
                 continue;
             }
 
-            double angle = B.angle(A, C);
+            double angle = LicUtils.angle(A, B, C);
 
             if ((angle < Math.PI - epsilon) || (angle > Math.PI + epsilon)) {
                 return true;
@@ -358,7 +330,7 @@ public class LicHelper {
             Point pointB = points[i + ePoints + 1];
             Point pointC = points[i + ePoints + fPoints + 2];
             
-            double triangleArea = 0.5 * Math.abs((pointB.x - pointA.x) * (pointC.y - pointA.y) - (pointC.x - pointA.x) * (pointB.y - pointA.y)); // Shoelace theorem
+            double triangleArea = LicUtils.calculateTriangleArea(pointA, pointB, pointC);
             if (triangleArea > area1) {
                 return true;
             }
@@ -394,10 +366,10 @@ public class LicHelper {
 		boolean lessThanLength2 = false;
 
 		for (int i = 0; i < numPoints - (kPts + 1); i++) {
-			if (points[i].distanceTo(points[i + kPts + 1]) > length1) {
+			if (LicUtils.pointDistance(points[i], points[i + kPts + 1]) > length1) {
 				greaterThanLength1 = true;
 			}
-			if (points[i].distanceTo(points[i + kPts + 1]) < length2) {
+			if (LicUtils.pointDistance(points[i], points[i + kPts + 1]) < length2) {
 				lessThanLength2 = true;
 			}
 
@@ -436,27 +408,15 @@ public class LicHelper {
             Point B = points[i + A_PTS + 1];
             Point C = points[i + A_PTS + B_PTS + 2];
 
-            double ab = A.distanceTo(B);
-            double bc = B.distanceTo(C); 
-            double ca = C.distanceTo(A);
+            double ab = LicUtils.pointDistance(A, B);
+            double bc = LicUtils.pointDistance(B, C); 
+            double ca = LicUtils.pointDistance(C, A);
 
             double longest = Math.max(ab, Math.max(bc, ca));
 
-            double area = Math.abs(
-                (A.x * (B.y - C.y) +
-                 B.x * (C.y - A.y) +
-                 C.x * (A.y - B.y)) / 2.0
-            );
+            double area = LicUtils.calculateTriangleArea(A, B, C);
 
-            double requiredRadius;
-            if (area == 0.0) {
-                requiredRadius = longest / 2.0;
-            } 
-            else {
-                double rCircumradius = (ab * bc * ca) / (4.0 * area);
-                double rLongestSide = longest / 2.0;
-                requiredRadius = Math.max(rLongestSide, rCircumradius);
-            }
+            double requiredRadius = LicUtils.calculateRequiredRadius(area, longest, ab, bc, ca);
 
             if (requiredRadius > r1) {
                 outsideCircle1 = true;
@@ -493,11 +453,7 @@ public class LicHelper {
             Point pointB = points[i + ePts + 1];
             Point pointC = points[i + ePts + fPts + 2];
 
-            double area = Math.abs(
-                (pointA.x * (pointB.y - pointC.y) +
-                 pointB.x * (pointC.y - pointA.y) +
-                 pointC.x * (pointA.y - pointB.y)) / 2.0
-            );
+            double area = LicUtils.calculateTriangleArea(pointA, pointB, pointC);
 
             if (area > area1) condition1 = true;
 
