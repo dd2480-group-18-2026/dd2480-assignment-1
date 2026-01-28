@@ -207,7 +207,7 @@ public class LicHelper {
     }
 
 
-    public static boolean calculateLIC5(int numPoints, Point[] points) {
+    private static boolean calculateLIC5(int numPoints, Point[] points) {
         for (int i = 0; i < numPoints - 1; i++) {
             Point pointA = points[i];
             Point pointB = points[i + 1];
@@ -218,7 +218,7 @@ public class LicHelper {
         return false;
     }
 
-    public static boolean calculateLIC6(ParameterStruct parameters, int numPoints, Point[] points) {
+    private static boolean calculateLIC6(ParameterStruct parameters, int numPoints, Point[] points) {
         int N_PTS = parameters.N_PTS;
         double DIST = parameters.DIST;
 
@@ -264,7 +264,7 @@ public class LicHelper {
 		return false;
 	}
 
-    public static boolean calculateLIC8(ParameterStruct parameters, int numPoints, Point[] points) {
+    private static boolean calculateLIC8(ParameterStruct parameters, int numPoints, Point[] points) {
         int A_PTS = parameters.A_PTS;
         int B_PTS = parameters.B_PTS;
         double R = parameters.RADIUS_1;
