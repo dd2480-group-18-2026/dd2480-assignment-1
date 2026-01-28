@@ -22,7 +22,7 @@ public class LicHelper {
             case 5:
                 return calculateLIC5(numPoints, points);
             case 6:
-				return false;
+                return calculateLIC6(parameters, numPoints, points);
             case 7:
                 return calculateLIC7(parameters, numPoints, points);
             case 8:
@@ -215,6 +215,35 @@ public class LicHelper {
                 return true;
             }
         }
+        return false;
+    }
+
+    public static boolean calculateLIC6(ParameterStruct parameters, int numPoints, Point[] points) {
+        int N_PTS = parameters.N_PTS;
+        double DIST = parameters.DIST;
+
+        if (numPoints < 3 || N_PTS < 3 || DIST < 0)
+            return false;
+
+        for (int i = 0; i <= numPoints - N_PTS; i++) {
+            
+            //Initialise first and last point
+            Point a = points[i];
+            Point b = points[i + N_PTS - 1];
+
+            //If a & b are the same point (exception)
+            if (a.x == b.x && a.y == b.y) {
+                //compare Euclidean distance from a to each interior point
+                for (int j = i + 1; j < i + N_PTS - 1; j++) {
+                    if (LicUtils.pointDistance(a, points[j]) > DIST) return true;
+                }
+            } else { // a and b are different points (common case)
+                for (int j = i + 1; j < i + N_PTS - 1; j++) {
+                    //compare perpendicular distance from the line through a and b to points[j]
+                    if (LicUtils.distToLine(a, b, points[j]) > DIST) return true;
+                }
+            }
+        } 
         return false;
     }
 
