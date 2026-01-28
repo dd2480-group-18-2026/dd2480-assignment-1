@@ -9,17 +9,16 @@ public final class LicUtils {
     //Helper methods:
 
     static double distToLine(Point a, Point b, Point p) {
-        //Using the point-to-line distance formula: |(B-A) x (P-A)| / |B-A|.
+        // Based on the wikipedia page: https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
         double abx = b.x - a.x;
         double aby = b.y - a.y;
 
-        double apx = p.x - a.x;
-        double apy = p.y - a.y;
+        double num = Math.abs(
+            aby * p.x - abx * p.y + b.x * a.y - b.y * a.x
+        );
+        double denom = Math.hypot(abx, aby);
 
-        double cross = abx * apy - aby * apx;
-        double abLen = Math.hypot(abx, aby);
-
-        return Math.abs(cross) / abLen;
+        return num / denom;
     }
 
     static double pointDistance(Point a, Point b) {

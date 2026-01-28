@@ -152,9 +152,8 @@ public class LicHelper {
         int N_PTS = parameters.N_PTS;
         double DIST = parameters.DIST;
 
-        if (numPoints < 3)
+        if (numPoints < 3 || N_PTS < 3 || DIST < 0)
             return false;
-        //could have additional error checks for invalid input
 
         for (int i = 0; i <= numPoints - N_PTS; i++) {
             
