@@ -12,7 +12,7 @@ public class LicHelper {
             case 0:
                 return calculateLIC0(points, parameters);
             case 1:
-                return false;
+                return calculateLIC1(points, numPoints, parameters);
             case 2:
                 return calculateLIC2(parameters, numPoints, points);
             case 3:
@@ -58,6 +58,51 @@ public class LicHelper {
         return false;
     }
 
+    private static boolean calculateLIC1(Point[] points, int numPoints, ParameterStruct parameters) {
+        double R = parameters.RADIUS_1;
+
+        if (numPoints < 3) {
+            return false;
+        }
+
+        for (int i = 0; i < numPoints - 2; i++) {
+            Point A = points[i];
+            Point B = points[i + 1];
+            Point C = points[i + 2];
+
+            double ab = LicUtils.pointDistance(A, B);
+            double bc = LicUtils.pointDistance(B, C); 
+            double ca = LicUtils.pointDistance(C, A);
+
+            double longest = Math.max(ab, Math.max(bc, ca));
+            if (longest > 2 * R) {
+                return true;
+            }
+
+            double area = Math.abs(
+                (A.x * (B.y - C.y) +
+                 B.x * (C.y - A.y) +
+                 C.x * (A.y - B.y)) / 2.0
+            );
+
+            double requiredRadius;
+            if (area == 0.0) {
+                requiredRadius = longest / 2.0;
+            } 
+            else {
+                double rCircumradius = (ab * bc * ca) / (4.0 * area);
+                double rLongestSide = longest / 2.0;
+                requiredRadius = Math.max(rLongestSide, rCircumradius);
+            }
+
+            if (requiredRadius > R) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
 	private static boolean calculateLIC2(ParameterStruct parameters, int numPoints, Point[] points) {
 		double epsilon = parameters.EPSILON;
 		if (numPoints < 3) {
