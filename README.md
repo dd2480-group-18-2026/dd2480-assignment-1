@@ -42,30 +42,30 @@ The JSON file should contain:
 Example input files and the expected structure can be found in the test resources directory.
 
 ## Contributions
-### August
+### August (GitHub: augustyvdal)
 Implemented LIC3, LIC8 and LIC13.
 Wrote README and License.
 Reviewed several PRs.
 
-### Felix
+### Felix (GitHub: seahoers)
 Set up the GitHub organisation and repo. 
 Implemented LIC0, LIC5 and LIC10. 
 Implemented the initial version of the DECIDE method. 
 Reviewed several PRs.
 
-### Tobias
+### Tobias (GitHub: Uniquepotatoes)
 Implemented LIC 1, 6 and 11.
 Made a LicUtils class and refactored all calculateLIC methods to use it instead of using methods in the point class, and having some code duplication in other places.
 Reviewed some PRs.
 
-### Eliott
+### Eliott (GitHub: Telmo26)
 Setup the project structure.
 Implemented LICs 4, 9 and 14.
 Added parallelism to the decide function.
 Implemented the JSON parsing function.
 Reviewed several PRs.
 
-### Tim
+### Tim (GitHub: tbengts)
 Implemented LIC 2, 7 and 12.
 Refactored tests to be shorter and more consistent with less unneeded boilerplate, cleaned up existing tests.
 Discussed implementation with other group members.
